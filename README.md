@@ -64,6 +64,35 @@ tls /etc/ssl/certs/domain1/fullchain.pem /etc/ssl/certs/domain1/key.pem
 
 ```
 
+For the root domain i used a seperate file, in this file i createde a respond with some html included. Using a inline respond will serve mutch faster. In my case caddy works almost 60% faster using direct respond.
+```bash
+# file:  /etc/caddy/conf.d/domain1_root.conf
+
+vars {
+	title \"Site Name\"
+	css " <link rel=\"stylesheet\"  <type=\"text/css\"   href=\"https://tlnd.nl/css/tables.css\" />"
+	css-terminal " <link rel=\"stylesheet\"  <type=\"text/css\"   href=\"https://tlnd.nl/css/terminal.css\" />"
+	}
+
+
+header Content-Type text/html
+respond "
+  <!DOCTYPE html>
+  <html lang=\"en\">
+  <head>
+  <title>{vars.title}</title>
+  {vars.css-terminal}
+  </head>
+  <body>
+	  {vars.body}
+  </body>
+  </html>
+
+"
+
+
+```
+As you can see you need escape characters with double quotes if you put your static content to respond. You can use variables. In this case i made them in the same file, but you can also create a more global variable file and add it to your Caddy file or your domain file. 
 
 
 
