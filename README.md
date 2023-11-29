@@ -2,6 +2,8 @@
 ## caddy did not show index file on the specified paths here some examples how to configure caddy
 
 
+i thsted this on caddy v2.7.5
+
 In my main caddy file i made imports by domain. 
 
 so my main caddy file looks like this
