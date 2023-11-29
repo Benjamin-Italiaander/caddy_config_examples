@@ -58,6 +58,13 @@ tls /etc/ssl/certs/domain1/fullchain.pem /etc/ssl/certs/domain1/key.pem
 			}
 }
 
+ # A proxied uri in this case to localhost port 8080 but could be anything
+       handle_path  /proxy* {
+                reverse_proxy  127.0.0.1:8080
+        }
+
+
+
 
 # In my case i created a seperate handle for the domain root 
  handle / {
